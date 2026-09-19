@@ -897,6 +897,7 @@ html, body {
   .hero-cta-cluster .btn-beam-container,
   .hero-cta-cluster .btn-secondary,
   .hero-cta-cluster .btn-ghost {
+    display: flex;
     width: 100%;
     justify-content: center;
     text-align: center;
@@ -1257,6 +1258,28 @@ html, body {
     grid-template-columns: 1fr;
     gap: 12px;
   }
+  /* Botões full-width a partir de tablet (quando o layout já é 1 coluna) */
+  .about-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+  .about-actions .btn-beam-container,
+  .about-actions .btn-secondary {
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    align-self: stretch;
+    justify-content: center;
+    box-sizing: border-box;
+    /* overflow: clip evita o bug de cálculo de largura em flex
+       sem criar BFC como overflow: hidden faz */
+    overflow: clip;
+  }
+  .about-actions .btn-beam-content {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 @media (max-width: 520px) {
@@ -1268,15 +1291,6 @@ html, body {
   }
   .about-lead {
     font-size: 16px;
-  }
-  .about-actions {
-    flex-direction: column;
-    width: 100%;
-  }
-  .about-actions .btn-beam-container,
-  .about-actions .btn-secondary {
-    width: 100%;
-    justify-content: center;
   }
 }
 
