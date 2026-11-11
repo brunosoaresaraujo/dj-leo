@@ -1,301 +1,315 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LEO ALVES — DJ & Produtor Musical | Pronto Pra Fazer Barulho?</title>
-  <meta name="description"
-    content="A energia que domina as pistas. Batida certeira, atitude de sobra, do primeiro beat ao último grito da festa." />
-
-  <!-- Google Fonts: Outfit, Geist, Space Grotesk, Space Mono -->
+  <title>LEO ALVES — DJ | A música certa. O momento inesquecível.</title>
+  <meta name="description" content="DJ Leo Alves — mais de 30 anos comandando pistas em Brasília. Casamentos, festas, corporativos, clubs e rooftops." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
-    rel="stylesheet" />
-
-  <!-- Stylesheet -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800;900&family=Manrope:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800;900&family=Manrope:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800;900&family=Manrope:wght@400;500;600;700&display=swap" /></noscript>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2307060B'/%3E%3Cpath d='M9 7v18h9' stroke='%23FF2BD6' stroke-width='4' fill='none'/%3E%3Ccircle cx='23' cy='20' r='4' fill='%23FF2BD6'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="assets/css/lp.css" />
 </head>
-
 <body>
 
-  <!-- =========================================================================
-       TOP NAVIGATION
-       ========================================================================= -->
-  <nav class="lp-nav" id="lpNav">
-    <div class="nav-container">
-      <a href="#hero" class="nav-brand-link">
-        <img src="assets/img/logo-light.svg" alt="Leo Alves Logo Oficial" class="nav-logo-svg" />
-
-      </a>
-      <ul class="nav-center-menu">
-        <li><a href="#sobre" class="nav-item-link">Sobre</a></li>
-        <li><a href="#musicas" class="nav-item-link">Músicas</a></li>
-        <li><a href="#sets" class="nav-item-link">Sets Ao Vivo</a></li>
-        <li><a href="#agenda" class="nav-item-link">Agenda</a></li>
-        <li><a href="ds.html" class="nav-item-link" style="color: var(--color-electric-blue);">Design Spec</a></li>
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="wrap">
+      <a href="#topo" class="nav-logo"><img src="assets/img/logo-light.svg" alt="Leo Alves" width="464" height="69" /></a>
+      <ul class="nav-links">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#eventos">Eventos</a></li>
+        <li><a href="#galeria">Galeria</a></li>
+        <li><a href="#como-funciona">Como funciona</a></li>
       </ul>
-      <div class="nav-right-actions">
-        <!-- Border Beam Action Button -->
-        <a href="mailto:leo@alves-music.com" class="btn-beam-container">
-          <div class="beam-border"></div>
-          <div class="btn-beam-content" style="padding: 10px 22px; font-size: 11px;">
-            <span>CONTRATAR SHOW</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14"></path>
-              <path d="m12 5 7 7-7 7"></path>
-            </svg>
-          </div>
-        </a>
-      </div>
+      <a href="#orcamento" class="btn btn-neon js-wa" data-wa-msg="Olá, Leo! Vim pelo site e quero contratar seu show para o meu evento.">Contratar show
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
     </div>
   </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#sobre">Sobre</a>
+    <a href="#eventos">Eventos</a>
+    <a href="#galeria">Galeria</a>
+    <a href="#como-funciona">Como funciona</a>
+    <a href="#orcamento" class="btn btn-neon js-wa" data-wa-msg="Olá, Leo! Vim pelo site e quero um orçamento para o meu evento.">Fazer orçamento</a>
+  </div>
 
-  <!-- =========================================================================
-       HERO SECTION WITH MODERN DUAL-VIDEO SLIDER
-       ========================================================================= -->
-  <header class="hero-wrapper" id="hero">
-
-    <!-- Background Dual-Video Slider Stage -->
-    <div class="video-slider-stage" id="videoSliderStage">
-      <!-- Slide 1: Live Stage in Action -->
-      <div class="video-slide-item active" data-index="0">
-        <video class="video-element" autoplay muted loop playsinline poster="assets/img/logo-light.svg">
-          <source src="assets/video/DJ-TESTE-LEO.mp4" type="video/mp4" />
-        </video>
-      </div>
-
-      <!-- Slide 2: Hardware Modular Synth Live Set -->
-      <div class="video-slide-item" data-index="1">
-        <video class="video-element" muted loop playsinline poster="assets/img/logo-light.svg">
-          <source src="assets/video/DJ-TESTE-2.mp4" type="video/mp4" />
-        </video>
-      </div>
+  <!-- HERO -->
+  <header class="hero" id="topo">
+    <div class="hero-videos" id="heroVideos">
+      <video id="heroReel" autoplay muted loop playsinline preload="auto" poster="assets/img/hero-poster.jpg">
+        <source src="assets/video/hero-mix.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-grain" aria-hidden="true"></div>
     </div>
 
-    <!-- Atmospheric Visual Layering -->
-    <div class="hero-vignette-overlay"></div>
-    <div class="hero-bottom-gradient"></div>
-    <div class="hero-laser-grid"></div>
-    <div class="hero-scanline-fx"></div>
-    <div class="glow-orb-left"></div>
-    <div class="glow-orb-right"></div>
-
-    <!-- Spacer for Top Navigation -->
-    <div></div>
-
-    <!-- Main Foreground Stage Content -->
-    <div class="hero-center-content">
-
-      <!-- Left: Massive Typography & Action Cluster -->
-      <div class="hero-main-title-block">
-        <h1 class="hero-headline">
-          PRONTO PRA FAZER BARULHO?
+    <div class="wrap">
+      <div class="hero-inner">
+        <span class="hero-kicker hero-in"><i class="live-dot"></i> DJ em Brasília · +30 anos de pista</span>
+        <h1 class="hero-in d1">
+          <span class="line">A música certa.</span>
+          <span class="line">O momento <span class="neon">inesquecível.</span></span>
         </h1>
-
-        <p class="hero-description">
-          A energia que domina as pistas. <strong>Batida certeira, atitude de sobra</strong>, do primeiro beat ao último
-          grito da festa.
-        </p>
-
-        <!-- CTA Buttons -->
-        <div class="hero-cta-cluster">
-          <!-- Primary Border Beam Button -->
-          <a href="mailto:leo@alves-music.com?subject=Solicita%C3%A7%C3%A3o%20de%20Or%C3%A7amento%20-%20Leo%20Alves"
-            class="btn-beam-container">
-            <div class="beam-border"></div>
-            <div class="btn-beam-content">
-              <span>FAZER UM ORÇAMENTO</span>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12h14"></path>
-                <path d="m12 5 7 7-7 7"></path>
-              </svg>
-            </div>
+        <p class="lead hero-in d2">Cada evento tem sua energia. Eu entro com a trilha sonora, a experiência e a conexão para transformar cada ocasião em uma experiência única.</p>
+        <div class="hero-ctas hero-in d3">
+          <a href="#orcamento" class="btn btn-neon js-wa" data-wa-msg="Olá, Leo! Vim pelo site e quero um orçamento para o meu evento.">Fazer um orçamento
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-
-          <!-- Secondary Metallic Sheen -->
-          <a href="#sobre" class="btn-secondary">
-            <span>SABER MAIS</span>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="m6 9 6 6 6-6"></path>
-            </svg>
-          </a>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Bottom Controls: Dual-Video Modern Slide Bar -->
-    <div class="hero-bottom-bar">
-      <!-- Slide Selector Tabs -->
-      <div class="video-slide-tabs">
-        <!-- Tab 01 -->
-        <div class="video-tab-item active" data-slide="0">
-          <span class="video-tab-index">01</span>
-          <span class="tab-label">AO VIVO NA PISTA<span class="tab-sub-text"> // SHOWTIME</span></span>
-          <div class="video-tab-progress">
-            <div class="video-tab-progress-fill"></div>
-          </div>
-        </div>
-
-        <!-- Tab 02 -->
-        <div class="video-tab-item" data-slide="1">
-          <span class="video-tab-index">02</span>
-          <span class="tab-label">STUDIO & MODULAR<span class="tab-sub-text"> // NOVO SET</span></span>
-          <div class="video-tab-progress">
-            <div class="video-tab-progress-fill"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Navigation Controls -->
-      <div class="bottom-actions-group">
-        <!-- Arrow Controls -->
-        <div class="video-nav-arrows">
-          <button id="videoPrevBtn" class="video-nav-btn" aria-label="Vídeo Anterior">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="m15 18-6-6 6-6" />
-            </svg>
-          </button>
-          <button id="videoNextBtn" class="video-nav-btn" aria-label="Próximo Vídeo">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="m9 18 6-6-6-6" />
-            </svg>
-          </button>
+          <a href="#sobre" class="btn btn-ghost">Conhecer o DJ</a>
         </div>
       </div>
     </div>
 
+    <div class="hero-bottom">
+      <div class="wrap">
+        <div class="reel" id="reel">
+          <div class="reel-meta">
+            <span class="reel-rec"><i></i>REC</span>
+            <span class="reel-label" id="reelLabel">Festas temáticas</span>
+            <span class="reel-count"><b id="reelIdx">01</b>/06</span>
+          </div>
+          <div class="reel-bars" id="reelBars" aria-label="Cenas do vídeo"></div>
+        </div>
+        <div class="eq" aria-hidden="true" id="eq"></div>
+      </div>
+    </div>
   </header>
 
-  <!-- =========================================================================
-       SECTION 02: SOBRE O ARTISTA — DJ LEO ALVES
-       ========================================================================= -->
-  <section class="about-section" id="sobre">
-    <!-- Ambient Backdrop Effects -->
-    <div class="about-bg-grid"></div>
-    <div class="about-glow-orb"></div>
+  <!-- TICKER -->
+  <div class="ticker-clip"><div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Casamentos</span><span>Open Format</span><span>Festas temáticas</span><span>Rooftops</span><span>Corporativos</span><span>Aniversários</span><span>Clubs</span><span>15 anos</span>
+      <span>Casamentos</span><span>Open Format</span><span>Festas temáticas</span><span>Rooftops</span><span>Corporativos</span><span>Aniversários</span><span>Clubs</span><span>15 anos</span>
+    </div>
+  </div></div>
 
-    <div class="about-container">
-      <!-- Visual Column: DJ Leo Alves Official Portrait -->
-      <div class="about-visual-col">
-        <div class="about-photo-wrapper">
-          <img src="assets/img/dj-leo.webp" alt="DJ Leo Alves - DJ &amp; Produtor Musical" class="about-photo-img" />
-          <div class="about-photo-overlay"></div>
-
-          <!-- Top Floating Live Status Badge -->
-          <div class="photo-floating-badge">
-            <span class="pulse-active-dot"></span>
-            <span>NO COMANDO DA PISTA</span>
-          </div>
-
-          <!-- Bottom Floating Experience Card -->
-          <div class="photo-exp-pill">
-            <div>
-              <div class="photo-exp-title">LEO ALVES</div>
-              <div class="photo-exp-sub">DJ &amp; PRODUTOR MUSICAL</div>
-            </div>
-            <div style="text-align: right;">
-              <div class="photo-exp-title" style="color: var(--color-electric-blue);">+15 ANOS</div>
-              <div class="photo-exp-sub">EXPERIÊNCIA</div>
-            </div>
-          </div>
+  <!-- SOBRE -->
+  <section id="sobre">
+    <div class="wrap about-grid">
+      <div class="portrait reveal">
+        <div class="portrait-inner">
+          <img src="assets/img/foto1.webp" width="1400" height="933" alt="DJ Leo Alves na cabine com máscara, luzes e efeitos" style="object-position: 30% center;" />
         </div>
+        <div class="portrait-tag">
+          <div><strong>Leo Alves</strong><small>DJ · Brasília/DF</small></div>
+        </div>
+        <div class="years-badge"><div><b class="grad-text">30+</b><span>anos de<br>pista</span></div></div>
       </div>
 
-      <!-- Content Column: Bio, Vision & Highlight Pillars -->
-      <div class="about-content-col">
-        <div class="about-section-tag">02 // SOBRE O ARTISTA</div>
-
-        <h2 class="about-title">
-          MAIS QUE MÚSICA, UMA
-          <span class="gradient-text">EXPERIÊNCIA VIVA NA PISTA</span>
-        </h2>
-
-
-        <p class="about-lead">
-          Mais de 30 anos criando experiências através da música.
-        </p>
-
-        <p class="about-text">
-          Com uma trajetória consolidada no cenário de eventos de Brasília, <strong>Leo Alves</strong> já passou por importantes
-          casas e espaços da capital, como Espaço Patrícia Buffet, Patú Anú, Villa Rizza, Chantall, Porto Vitória,
-          Villa Giardini, Taj, Liv Lounge e Café de La Musique, além de Doma Rooftop, Gran Bier e diversos eventos
-          realizados em Brasília.
-        </p>
-
-        <p class="about-text">
-          Seu diferencial está na leitura da pista e na curadoria musical. Cada repertório é pensado de acordo com
-          o perfil do público, o estilo do evento e as preferências de cada cliente.
-        </p>
-
-        <p class="about-text">
-          Mais do que tocar música, <strong>Leo Alves</strong> cria o clima, conduz a energia e transforma cada evento
-          em uma experiência marcante.
-        </p>
-
-
-        <!-- Stats & Highlights 3-Card Grid -->
-        <div class="about-features-grid">
-          <div class="about-feature-card">
-            <div class="feature-number">+500</div>
-            <div class="feature-label">Eventos Realizados</div>
-            <div class="feature-desc">Festivais, clubs e celebrações premium pelo Brasil.</div>
-          </div>
-
-          <div class="about-feature-card">
-            <div class="feature-number">100%</div>
-            <div class="feature-label">Leitura de Pista</div>
-            <div class="feature-desc">Repertório flexível adaptado em tempo real ao público.</div>
-          </div>
-
-          <div class="about-feature-card">
-            <div class="feature-number">PRO</div>
-            <div class="feature-label">Sound &amp; Performance</div>
-            <div class="feature-desc">Equipamentos de alta fidelidade e pressão sonora cristalina.</div>
-          </div>
+      <div class="about-text">
+        <span class="eyebrow reveal">Sobre o artista</span>
+        <h2 class="title reveal d1">A música transforma momentos em <span class="grad-text">experiências inesquecíveis.</span></h2>
+        <p class="big reveal d1">Mais de 30 anos criando experiências inesquecíveis através da música.</p>
+        <p class="reveal d2">Com uma trajetória consolidada no cenário de eventos de Brasília, <strong>Leo Alves</strong> tem seu nome marcado nas principais casas, rooftops e espaços de alto padrão da capital. Seu diferencial está na <strong>leitura cirúrgica da pista</strong> e na curadoria musical sob medida — cada repertório é desenhado para o perfil do público, o estilo do evento e a identidade de cada cliente.</p>
+        <p class="reveal d2">Mais do que tocar música, ele cria o clima, conduz a energia e transforma cada celebração em um espetáculo visual e sonoro.</p>
+        <div class="chips reveal d3">
+          <span class="chip">Leitura de pista ao vivo</span>
+          <span class="chip">Repertório sob medida</span>
+          <span class="chip">Performance &amp; efeitos</span>
+          <span class="chip">Open format</span>
         </div>
-
-        <!-- Personal Philosophy Quote -->
-        <div class="about-quote-box">
-          "A pista é um organismo vivo. Meu papel é entender a vibração da galera e entregar o drop exato no momento
-          certo."
-          <span class="about-quote-author">— LEO ALVES</span>
-        </div>
-
-        <!-- Action Buttons -->
-        <div class="about-actions">
-          <a href="mailto:leo@alves-music.com?subject=Or%C3%A7amento%20DJ%20Leo%20Alves" class="btn-beam-container">
-            <div class="beam-border"></div>
-            <div class="btn-beam-content">
-              <span>FAZER UM ORÇAMENTO</span>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12h14"></path>
-                <path d="m12 5 7 7-7 7"></path>
-              </svg>
-            </div>
-          </a>
-
-          <a href="#sets" class="btn-secondary">
-            <span>OUVIR SETS AO VIVO</span>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="5 3 19 12 5 21 5 3"></polygon>
-            </svg>
-          </a>
-        </div>
+        <a href="#orcamento" class="btn btn-neon reveal d3 js-wa" data-wa-msg="Olá, Leo! Vim pelo site e quero você na minha festa. Pode me passar um orçamento?">Quero o Leo na minha festa
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- JavaScript Engine -->
+  <!-- NÚMEROS -->
+  <div class="stats">
+    <div class="wrap">
+      <div class="stats-grid reveal">
+        <div class="stat"><b class="grad-text" data-count="30" data-prefix="+">+30</b><span>anos de carreira</span></div>
+        <div class="stat"><b class="grad-text" data-count="500" data-prefix="+">+500</b><span>eventos comandados</span></div>
+        <div class="stat"><b class="grad-text" data-count="11" data-prefix="+">+11</b><span>casas de Brasília no currículo</span></div>
+        <div class="stat"><b class="grad-text" data-count="100" data-suffix="%">100%</b><span>repertório sem script engessado</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EVENTOS -->
+  <section id="eventos">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow reveal">Para cada celebração</span>
+          <h2 class="title reveal d1">Uma pista <span class="grad-text">sob medida</span></h2>
+        </div>
+        <p class="reveal d2">Do casamento intimista ao rooftop lotado: a trilha é pensada para o seu público, o seu horário e a energia que você quer entregar.</p>
+      </div>
+
+      <div class="events">
+        <article class="event feature reveal">
+          <div>
+            <span class="event-num">01</span>
+            <div class="event-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div>
+            <h3>Casamentos</h3>
+            <p>Da entrada da noiva ao último hit da madrugada. Repertório construído junto com o casal, transições no tempo certo e pista cheia até o fim.</p>
+          </div>
+          <a href="#orcamento" class="btn btn-ghost js-wa" data-wa-msg="Olá, Leo! Vim pelo site e quero um orçamento para o meu casamento." style="align-self:flex-start; margin-top:28px;">Orçar casamento</a>
+        </article>
+        <article class="event reveal d1">
+          <span class="event-num">02</span>
+          <div class="event-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5v1a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5Z"/><path d="M8 14s-4 1-4 4v4h16v-4c0-3-4-4-4-4"/><path d="M9 7h.01M15 7h.01"/></svg></div>
+          <h3>Festas temáticas</h3>
+          <p>Fantasia, figurino e show na cabine. A trilha entra no clima do tema.</p>
+        </article>
+        <article class="event reveal d2">
+          <span class="event-num">03</span>
+          <div class="event-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+          <h3>Corporativos</h3>
+          <p>Confraternizações, lançamentos e eventos de marca com som na medida.</p>
+        </article>
+        <article class="event reveal d1">
+          <span class="event-num">04</span>
+          <div class="event-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"/><path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"/><path d="M2 21h20M7 8v3M12 8v3M17 8v3M7 4h.01M12 4h.01M17 4h.01"/></svg></div>
+          <h3>Aniversários &amp; 15 anos</h3>
+          <p>Hits de todas as gerações para a família inteira dançar junta.</p>
+        </article>
+        <article class="event reveal d2">
+          <span class="event-num">05</span>
+          <div class="event-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+          <h3>Clubs &amp; rooftops</h3>
+          <p>Open format e house com pressão sonora e drop no momento exato.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIA -->
+  <section id="galeria" style="padding-top: 0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow reveal">Galeria</span>
+          <h2 class="title reveal d1">Luz, fumaça e <span class="grad-text">pista cheia</span></h2>
+        </div>
+        <p class="reveal d2">Presença de palco magnética, efeitos especiais e sintonia total com o público.</p>
+      </div>
+      <div class="gallery">
+        <figure class="g-item tall reveal" data-full="assets/img/foto3.webp">
+          <img src="assets/img/foto3.webp" width="1400" height="933" alt="DJ Leo Alves abrindo a capa na cabine com luzes e fumaça" loading="lazy" />
+          <figcaption class="g-cap">Showtime na pista</figcaption>
+        </figure>
+        <figure class="g-item reveal d1" data-full="assets/img/foto2.webp">
+          <img src="assets/img/foto2.webp" width="1400" height="933" alt="DJ Leo Alves com convidados em festa temática" loading="lazy" />
+          <figcaption class="g-cap">Conexão &amp; temáticos</figcaption>
+        </figure>
+        <figure class="g-item reveal d2" data-full="assets/img/foto1.webp">
+          <img src="assets/img/foto1.webp" width="1400" height="933" alt="DJ Leo Alves em performance com máscara" loading="lazy" style="object-position: 25% center;" />
+          <figcaption class="g-cap">Performance &amp; mistério</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+    <button type="button" id="lbClose" aria-label="Fechar">✕</button>
+    <img id="lbImg" src="" alt="" />
+  </div>
+
+  <!-- CASAS -->
+  <div class="venues">
+    <div class="wrap"><span class="eyebrow">Palcos &amp; casas por onde já passou em Brasília</span></div>
+    <div class="venue-row">
+      <span class="fill">Café de La Musique</span><span>Taj Brasília</span><span class="fill">Liv Lounge</span><span>Doma Rooftop</span><span class="fill">Villa Giardini</span><span>Villa Rizza</span>
+      <span class="fill">Café de La Musique</span><span>Taj Brasília</span><span class="fill">Liv Lounge</span><span>Doma Rooftop</span><span class="fill">Villa Giardini</span><span>Villa Rizza</span>
+    </div>
+    <div class="venue-row reverse">
+      <span>Porto Vitória</span><span class="fill">Espaço Patrícia Buffet</span><span>Patú Anú</span><span class="fill">Chantall</span><span>Gran Bier</span>
+      <span>Porto Vitória</span><span class="fill">Espaço Patrícia Buffet</span><span>Patú Anú</span><span class="fill">Chantall</span><span>Gran Bier</span>
+    </div>
+  </div>
+
+  <!-- QUOTE -->
+  <section class="quote">
+    <div class="wrap">
+      <div class="quote-mark grad-text reveal">“</div>
+      <blockquote class="reveal d1">A pista é um organismo vivo. Meu papel é sentir a vibração da galera, criar o clima e entregar o <span class="grad-text">drop exato no momento certo.</span></blockquote>
+      <cite class="reveal d2">— LEO ALVES</cite>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section id="como-funciona" style="padding-top: 0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow reveal">Como funciona</span>
+          <h2 class="title reveal d1">Do contato ao <span class="grad-text">último drop</span></h2>
+        </div>
+        <p class="reveal d2">Um processo simples para você só se preocupar em curtir a festa.</p>
+      </div>
+      <div class="steps">
+        <div class="step reveal"><h3>Contato &amp; orçamento</h3><p>Conte a data, o local e o tipo de evento. Você recebe uma proposta personalizada.</p></div>
+        <div class="step reveal d1"><h3>Curadoria</h3><p>Conversa para entender o público, as músicas obrigatórias e as que não podem tocar de jeito nenhum.</p></div>
+        <div class="step reveal d2"><h3>Showtime</h3><p>No dia, leitura de pista ao vivo, efeitos e energia do primeiro beat ao último grito.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / ORÇAMENTO -->
+  <div class="cta" id="orcamento">
+    <div class="wrap">
+      <div class="cta-box reveal">
+        <div>
+          <span class="eyebrow">Agenda aberta</span>
+          <h2 class="title">Bora fazer <span class="grad-text">barulho</span> juntos?</h2>
+          <p class="sub">Me chama no WhatsApp com a data, o local e o tipo de evento — respondo com um orçamento sob medida. As datas mais disputadas acabam rápido.</p>
+        </div>
+
+        <div class="contact-cards">
+          <a href="#" class="c-card c-wa js-wa">
+            <span class="c-ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-1 1.2-.4.2-.7.1a8.2 8.2 0 0 1-4.1-3.6c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6a1.1 1.1 0 0 0-.8.4 3.4 3.4 0 0 0-1 2.5 5.9 5.9 0 0 0 1.2 3.1 13.5 13.5 0 0 0 5.2 4.6c1.9.8 2.7.9 3.6.7a3.1 3.1 0 0 0 2-1.4 2.5 2.5 0 0 0 .2-1.4c-.1-.2-.3-.3-.6-.4ZM12 21.8a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8Zm0-21.6A11.8 11.8 0 0 0 1.9 18L.2 24l6.2-1.6A11.8 11.8 0 1 0 12 .2Z"/></svg></span>
+            <span class="c-txt"><small>Resposta rápida</small><strong>Chamar no WhatsApp</strong></span>
+            <svg class="c-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </a>
+          <div class="c-row">
+            <a href="https://www.instagram.com/leonardoalvesdj" class="c-card c-sm" target="_blank" rel="noopener">
+              <span class="c-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></span>
+              <span class="c-txt"><small>Instagram</small><strong>@leonardoalvesdj</strong></span>
+              <svg class="c-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
+            <a href="#" class="c-card c-sm" target="_blank" rel="noopener">
+              <span class="c-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24 24 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.6 49.6 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24 24 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.6 49.6 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg></span>
+              <span class="c-txt"><small>YouTube</small><strong>Sets ao vivo</strong></span>
+              <svg class="c-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
+          </div>
+          <a href="mailto:leo@alves-music.com?subject=Or%C3%A7amento%20DJ%20Leo%20Alves" class="c-card c-sm">
+            <span class="c-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
+            <span class="c-txt"><small>E-mail</small><strong>leo@alves-music.com</strong></span>
+            <svg class="c-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <img src="assets/img/logo-light.svg" alt="Leo Alves" width="464" height="69" />
+      <p>© <span id="year"></span> Leo Alves · DJ em Brasília/DF</p>
+      <div class="socials">
+        <a href="https://www.instagram.com/leonardoalvesdj" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24 24 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.6 49.6 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24 24 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.6 49.6 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg></a>
+        <a href="#" class="js-wa" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.5A8.4 8.4 0 1 1 21 11.5Z"/></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="wa-float js-wa" aria-label="Falar no WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-1 1.2-.4.2-.7.1a8.2 8.2 0 0 1-4.1-3.6c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6a1.1 1.1 0 0 0-.8.4 3.4 3.4 0 0 0-1 2.5 5.9 5.9 0 0 0 1.2 3.1 13.5 13.5 0 0 0 5.2 4.6c1.9.8 2.7.9 3.6.7a3.1 3.1 0 0 0 2-1.4 2.5 2.5 0 0 0 .2-1.4c-.1-.2-.3-.3-.6-.4ZM12 21.8a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8Zm0-21.6A11.8 11.8 0 0 0 1.9 18L.2 24l6.2-1.6A11.8 11.8 0 1 0 12 .2Z"/></svg>
+  </a>
+
   <script src="assets/js/lp.js"></script>
 </body>
-
 </html>

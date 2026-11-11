@@ -1,295 +1,141 @@
-/* ==========================================================================
-   LEO ALVES — LANDING PAGE HERO JAVASCRIPT ENGINE
-   Features: Dual-Video Modern Slide Engine, Audio Visualizer, Hardware Synth
-   ========================================================================== */
+// >>> Troque pelo número do Leo (DDI + DDD + número, só dígitos) <<<
+const WHATSAPP = '5561983018101';
 
-document.addEventListener('DOMContentLoaded', () => {
-  initDualVideoSlider();
-  initHudAudioEngine();
-  initNavbarScroll();
-  initMouseGlowTracking();
-});
-
-/* --------------------------------------------------------------------------
-   1. DUAL-VIDEO MODERN SLIDE TRANSITION ENGINE
-   -------------------------------------------------------------------------- */
-let currentVideoSlide = 0;
-const videoSlideDuration = 8000; // 8 seconds per video
-let videoSlideTimer = null;
-let progressInterval = null;
-let progressStartTime = 0;
-
-function initDualVideoSlider() {
-  const slides = document.querySelectorAll('.video-slide-item');
-  const tabs = document.querySelectorAll('.video-tab-item');
-  const prevBtn = document.getElementById('videoPrevBtn');
-  const nextBtn = document.getElementById('videoNextBtn');
-
-  if (!slides.length) return;
-
-  function switchVideoSlide(index) {
-    currentVideoSlide = index;
-
-    // Transition slides
-    slides.forEach((slide, i) => {
-      const video = slide.querySelector('video');
-      if (i === currentVideoSlide) {
-        slide.classList.add('active');
-        if (video) {
-          video.currentTime = 0;
-          video.play().catch(() => {});
-        }
-      } else {
-        slide.classList.remove('active');
-        if (video) {
-          setTimeout(() => {
-            if (!slide.classList.contains('active')) {
-              video.pause();
-            }
-          }, 1400);
-        }
-      }
-    });
-
-    // Update tab indicators
-    tabs.forEach((tab, i) => {
-      const progressFill = tab.querySelector('.video-tab-progress-fill');
-      if (i === currentVideoSlide) {
-        tab.classList.add('active');
-        if (progressFill) progressFill.style.width = '0%';
-      } else {
-        tab.classList.remove('active');
-        if (progressFill) progressFill.style.width = '0%';
-      }
-    });
-
-    // Reset and start slide progress animation
-    startSlideProgress();
-  }
-
-  function startSlideProgress() {
-    clearInterval(progressInterval);
-    clearTimeout(videoSlideTimer);
-
-    progressStartTime = Date.now();
-    const activeTab = tabs[currentVideoSlide];
-    const progressFill = activeTab ? activeTab.querySelector('.video-tab-progress-fill') : null;
-
-    progressInterval = setInterval(() => {
-      const elapsed = Date.now() - progressStartTime;
-      const pct = Math.min(100, (elapsed / videoSlideDuration) * 100);
-      if (progressFill) {
-        progressFill.style.width = `${pct}%`;
-      }
-    }, 50);
-
-    videoSlideTimer = setTimeout(() => {
-      const nextIndex = (currentVideoSlide + 1) % slides.length;
-      switchVideoSlide(nextIndex);
-    }, videoSlideDuration);
-  }
-
-  // Tab click bindings
-  tabs.forEach((tab, i) => {
-    tab.addEventListener('click', () => {
-      switchVideoSlide(i);
-    });
+(() => {
+  const waBase = `https://wa.me/${WHATSAPP}`;
+  document.querySelectorAll('.js-wa').forEach(a => {
+    a.href = waBase + '?text=' + encodeURIComponent(a.dataset.waMsg || 'Olá, Leo! Vim pelo site e quero um orçamento para o meu evento.');
+    a.target = '_blank';
+    a.rel = 'noopener';
   });
 
-  // Arrow buttons
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      const nextIndex = (currentVideoSlide + 1) % slides.length;
-      switchVideoSlide(nextIndex);
+  // Nav scrolled
+  const nav = document.getElementById('nav');
+  if (nav) {
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  // Mobile menu
+  const burger = document.getElementById('burger');
+  const menu = document.getElementById('mobileMenu');
+  if (burger && menu) {
+    const toggle = (open) => {
+      menu.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
+    burger.addEventListener('click', () => toggle(!menu.classList.contains('open')));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggle(false)));
+  }
+
+  // Hero reel (montagem única com 6 cenas)
+  const reel = document.getElementById('heroReel');
+  const bars = document.getElementById('reelBars');
+  if (reel && bars) {
+    const scenes = [
+      { t: 0,    label: 'Festas temáticas' },
+      { t: 5.8,  label: 'Na cabine' },
+      { t: 7.9,  label: 'Pista cheia' },
+      { t: 13.5, label: 'Open format' },
+      { t: 18.8, label: 'Performance' },
+      { t: 24.4, label: 'Showtime' }
+    ];
+    const label = document.getElementById('reelLabel');
+    const idxEl = document.getElementById('reelIdx');
+    const fills = scenes.map((sc, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'reel-bar';
+      b.setAttribute('aria-label', `Cena ${i + 1}: ${sc.label}`);
+      b.innerHTML = '<span></span>';
+      b.addEventListener('click', () => { reel.currentTime = sc.t + 0.05; reel.play().catch(() => {}); });
+      bars.appendChild(b);
+      return b;
     });
-  }
-
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
-      const prevIndex = (currentVideoSlide - 1 + slides.length) % slides.length;
-      switchVideoSlide(prevIndex);
-    });
-  }
-
-
-  // Initial boot
-  switchVideoSlide(0);
-}
-
-/* --------------------------------------------------------------------------
-   2. HUD AUDIO ENGINE & REAL-TIME SPECTRUM VISUALIZER
-   -------------------------------------------------------------------------- */
-let audioCtx = null;
-let isHudGroovePlaying = false;
-let hudGrooveInterval = null;
-
-function initHudAudioEngine() {
-  const playBtn = document.getElementById('hudPlayBtn');
-  const canvas = document.getElementById('hudCanvas');
-
-  if (canvas) {
-    setupSpectrumVisualizer(canvas);
-  }
-
-  if (playBtn) {
-    playBtn.addEventListener('click', () => {
-      if (!audioCtx) {
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        audioCtx = new AudioContext();
+    let last = -1;
+    const tick = () => {
+      const dur = reel.duration || 26.4, t = reel.currentTime;
+      let cur = 0;
+      scenes.forEach((sc, i) => { if (t >= sc.t) cur = i; });
+      fills.forEach((b, i) => {
+        const start = scenes[i].t, end = i < scenes.length - 1 ? scenes[i + 1].t : dur;
+        const p = Math.max(0, Math.min(1, (t - start) / (end - start)));
+        b.firstChild.style.transform = `scaleX(${p})`;
+        b.classList.toggle('active', i === cur);
+      });
+      if (cur !== last) {
+        last = cur;
+        label.classList.remove('swap'); void label.offsetWidth; label.classList.add('swap');
+        label.textContent = scenes[cur].label;
+        idxEl.textContent = String(cur + 1).padStart(2, '0');
       }
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
-
-      isHudGroovePlaying = !isHudGroovePlaying;
-
-      if (isHudGroovePlaying) {
-        playBtn.innerHTML = `
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <rect x="6" y="4" width="4" height="16"></rect>
-            <rect x="14" y="4" width="4" height="16"></rect>
-          </svg>
-        `;
-        playBtn.style.background = '#10B981';
-
-        // Play driving 128 BPM Techno Pattern
-        let step = 0;
-        triggerSynthSound('kick');
-        hudGrooveInterval = setInterval(() => {
-          step = (step + 1) % 4;
-          if (step % 2 === 0) triggerSynthSound('kick');
-          if (step === 2) triggerSynthSound('stab');
-          if (step % 1 === 0) triggerSynthSound('hihat');
-        }, 290); // ~128 BPM
-      } else {
-        playBtn.innerHTML = `
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-          </svg>
-        `;
-        playBtn.style.background = 'var(--color-electric-blue)';
-        clearInterval(hudGrooveInterval);
-      }
-    });
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+    reel.play().catch(() => {});
   }
-}
 
-function triggerSynthSound(type) {
-  if (!audioCtx) return;
-  const now = audioCtx.currentTime;
-
-  if (type === 'kick') {
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.frequency.setValueAtTime(160, now);
-    osc.frequency.exponentialRampToValueAtTime(32, now + 0.15);
-    gain.gain.setValueAtTime(1.0, now);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-    osc.start(now);
-    osc.stop(now + 0.35);
-  } else if (type === 'stab') {
-    const osc = audioCtx.createOscillator();
-    const filter = audioCtx.createBiquadFilter();
-    const gain = audioCtx.createGain();
-    osc.type = 'sawtooth';
-    osc.frequency.setValueAtTime(220, now);
-    filter.type = 'lowpass';
-    filter.Q.value = 7;
-    filter.frequency.setValueAtTime(1800, now);
-    filter.frequency.exponentialRampToValueAtTime(240, now + 0.25);
-    gain.gain.setValueAtTime(0.4, now);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
-    osc.connect(filter);
-    filter.connect(gain);
-    gain.connect(audioCtx.destination);
-    osc.start(now);
-    osc.stop(now + 0.3);
-  } else if (type === 'hihat') {
-    const bufferSize = audioCtx.sampleRate * 0.05;
-    const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-    const data = buffer.getChannelData(0);
-    for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
-    const noise = audioCtx.createBufferSource();
-    noise.buffer = buffer;
-    const filter = audioCtx.createBiquadFilter();
-    filter.type = 'highpass';
-    filter.frequency.value = 8000;
-    const gain = audioCtx.createGain();
-    gain.gain.setValueAtTime(0.25, now);
-    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
-    noise.connect(filter);
-    filter.connect(gain);
-    gain.connect(audioCtx.destination);
-    noise.start(now);
-    noise.stop(now + 0.05);
-  }
-}
-
-function setupSpectrumVisualizer(canvas) {
-  const ctx = canvas.getContext('2d');
-  const dpr = window.devicePixelRatio || 1;
-  canvas.width = canvas.clientWidth * dpr;
-  canvas.height = canvas.clientHeight * dpr;
-  ctx.scale(dpr, dpr);
-
-  let phase = 0;
-  const barCount = 32;
-
-  function render() {
-    ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
-
-    const w = canvas.clientWidth;
-    const h = canvas.clientHeight;
-    const barW = (w / barCount) - 2;
-
-    for (let i = 0; i < barCount; i++) {
-      const x = i * (barW + 2);
-      const intensity = isHudGroovePlaying ? 1.4 : 0.6;
-      const barH = (Math.sin(phase + i * 0.35) * 0.5 + 0.5) * (h * 0.75 * intensity) + (h * 0.12);
-      const y = (h - barH) / 2;
-
-      const gradient = ctx.createLinearGradient(0, y, 0, y + barH);
-      gradient.addColorStop(0, '#60A5FA');
-      gradient.addColorStop(0.6, '#3B82C8');
-      gradient.addColorStop(1, '#1E40AF');
-
-      ctx.fillStyle = gradient;
-      ctx.beginPath();
-      ctx.roundRect(x, y, barW, barH, 2);
-      ctx.fill();
+  // Equalizer bars
+  const eq = document.getElementById('eq');
+  if (eq) {
+    for (let i = 0; i < 22; i++) {
+      const s = document.createElement('span');
+      s.style.animationDelay = (-Math.random() * 1.2).toFixed(2) + 's';
+      s.style.animationDuration = (0.7 + Math.random() * 0.8).toFixed(2) + 's';
+      eq.appendChild(s);
     }
-
-    phase += isHudGroovePlaying ? 0.12 : 0.05;
-    requestAnimationFrame(render);
   }
 
-  render();
-}
+  // Reveal on scroll + counters
+  const runCounter = (el) => {
+    const end = +el.dataset.count, pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
+    const t0 = performance.now(), dur = 1600;
+    const tick = (t) => {
+      const p = Math.min((t - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = pre + Math.round(end * e) + suf;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
 
-/* --------------------------------------------------------------------------
-   3. NAVBAR SCROLL EFFECT
-   -------------------------------------------------------------------------- */
-function initNavbarScroll() {
-  const nav = document.getElementById('lpNav');
-  if (!nav) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      en.target.classList.add('in');
+      en.target.querySelectorAll?.('[data-count]').forEach(runCounter);
+      io.unobserve(en.target);
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 30) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Spotlight on event cards
+  document.querySelectorAll('.event').forEach(card => {
+    card.addEventListener('pointermove', (e) => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
   });
-}
 
-/* --------------------------------------------------------------------------
-   4. MOUSE GLOW TRACKING
-   -------------------------------------------------------------------------- */
-function initMouseGlowTracking() {
-  window.addEventListener('mousemove', (e) => {
-    document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
-    document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
-  });
-}
+  // Lightbox
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbClose = document.getElementById('lbClose');
+  if (lb && lbImg) {
+    document.querySelectorAll('.g-item').forEach(g => g.addEventListener('click', () => {
+      lbImg.src = g.dataset.full;
+      lbImg.alt = g.querySelector('img').alt;
+      lb.classList.add('open');
+    }));
+    const closeLb = () => lb.classList.remove('open');
+    if (lbClose) lbClose.addEventListener('click', closeLb);
+    lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+  }
+
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+})();
