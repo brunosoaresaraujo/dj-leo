@@ -1640,3 +1640,10 @@ footer p {
 @media (max-width: 600px) {
   footer { padding-bottom: 96px; }
 }
+
+/* Formulário de orçamento (Google Forms) */
+.c-form { border-color: rgba(255, 43, 214, .45); }
+.c-form .c-txt strong { font-size: 16px; }
+.c-form:hover .c-arrow { color: var(--pink); }
+.inline-link { color: #fff; font-weight: 600; border-bottom: 1px solid var(--pink); transition: color .2s; }
+.inline-link:hover { color: var(--pink); }
