@@ -94,7 +94,7 @@ const WHATSAPP = '5561983018101';
     const t0 = performance.now(), dur = 1600;
     const tick = (t) => {
       const p = Math.min((t - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
-      el.textContent = pre + Math.round(end * e) + suf;
+      el.textContent = pre + Math.round(end * e).toLocaleString('pt-BR') + suf;
       if (p < 1) requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
