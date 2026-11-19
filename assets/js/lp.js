@@ -9,6 +9,34 @@ const WHATSAPP = '5561983018101';
     a.rel = 'noopener';
   });
 
+  // Analytics: envia cliques de contato para o Google Tag Manager (dataLayer)
+  window.dataLayer = window.dataLayer || [];
+  const channelOf = (a) => {
+    const href = a.getAttribute('href') || '';
+    if (a.classList.contains('js-wa') || href.includes('wa.me')) return 'whatsapp';
+    if (href.includes('forms.gle')) return 'formulario';
+    if (href.startsWith('mailto:')) return 'email';
+    if (href.includes('instagram.com')) return 'instagram';
+    if (href.includes('youtube.com')) return 'youtube';
+    if (href.includes('facebook.com')) return 'facebook';
+    if (href.includes('spotify.com')) return 'spotify';
+    if (href.includes('soundcloud.com')) return 'soundcloud';
+    return null;
+  };
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a');
+    if (!a) return;
+    const channel = channelOf(a);
+    if (!channel) return;
+    const section = a.closest('section, header, footer, nav, [id]');
+    window.dataLayer.push({
+      event: 'contato_click',
+      contact_channel: channel,
+      click_location: a.classList.contains('wa-float') ? 'botao_flutuante' : (section && section.id) || 'pagina',
+      click_text: (a.textContent || a.getAttribute('aria-label') || '').trim().replace(/\s+/g, ' ').slice(0, 80)
+    });
+  });
+
   // Nav scrolled
   const nav = document.getElementById('nav');
   if (nav) {
